@@ -1,8 +1,5 @@
 package com.jasonsmedley.networkdesigner;
 
-//import android.app.Activity;
-//import android.widget.Toast;
-
 public class newSubnet
 {
     // to signify current number of routers.
@@ -13,24 +10,23 @@ public class newSubnet
     //Create Router
     public boolean createRouter(String routername)
     {
-        for (int count = 0; count < 100; count++)
+    	for (int count = 0; count < 100; count++)
         {
             //Look for Null
-        	if(NAUsed[count][2][0] == null && !checkRouterExists(routername))
+        	if(NAUsed[count][2][0] == null)
             {
                 //When found place router name in array.
         		NAUsed[count][2][0] = routername;
                 current_routers++;
-                //Toast Router Created
                 return true;
             }
         }
-        return false;
+		return false;
     }
     
-    private boolean checkRouterExists(String routername)
+    public boolean checkRouterExists(String routername)
     {
-    	for (int count = 0; count <100; count++)
+    	for (int count = 0; count < 100; count++)
     	{
     		if(NAUsed[count][2][0] == routername)
     		{
@@ -57,8 +53,7 @@ public class newSubnet
                 }
                 current_routers--;
                 //Toast Router Deleted
-                //Toast.makeText(this, "Router Deleted", Toast.LENGTH_LONG).show();
-                
+                //Toast.makeText(this, "Router Deleted", Toast.LENGTH_LONG).show();                
             }
         }
     }
@@ -139,7 +134,7 @@ public class newSubnet
         return null;
     }
 
-    private static boolean checkIPExist(String ipaddress)
+    private boolean checkIPExist(String ipaddress)
     {
         for (int count = 0; count < NAUsed.length; count++)
         {

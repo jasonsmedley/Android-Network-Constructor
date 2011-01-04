@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class NetworkDesigner extends Activity {
+public class NetworkDesigner extends Activity 
+{
     /** Called when the activity is first created. */
     public static final String LOG_TAG = "NETWORK DESIGNER";
 	private String RouterName, RouterIPAddress, RouterSubnetAddress;
@@ -26,36 +27,45 @@ public class NetworkDesigner extends Activity {
         Button ok = (Button) this.findViewById(R.id.submit);
         
         //Run on button click
-        ok.setOnClickListener(new View.OnClickListener() {
+        ok.setOnClickListener(new View.OnClickListener() 
+        {
 			public void onClick(View v) 
 			{
-				RouterName = ((EditText)findViewById(R.id.editroutername)).toString();
+				Toast.makeText(c, "Button Pressed", Toast.LENGTH_SHORT);
+				RouterName = ((EditText)findViewById(R.id.editroutername)).getText().toString();
 				Log.v(LOG_TAG, "RouterName value: " + RouterName);
 		        RouterIPAddress = ((EditText)findViewById(R.id.editip)).getText().toString();
 		        RouterSubnetAddress = ((EditText)findViewById(R.id.editsubnet)).getText().toString();
 		        String PortTemp = ((EditText)findViewById(R.id.portno)).getText().toString();
-				try {
+				try 
+				{
 					PortNumber = Integer.parseInt(PortTemp);
-				} catch (NumberFormatException e) {
-					Toast.makeText(c, "You entered an invalid Port Number!", Toast.LENGTH_SHORT);
+					Log.v(LOG_TAG, "PortTemp PARSED");
+				} catch (NumberFormatException e) 
+				{
+					Log.v(LOG_TAG, "NUMBER FORMAT EXCEPTION");
 					return;
 				}
 				newSubnet test = new newSubnet();
-				if (test.createRouter(RouterName))
+				if (test.checkRouterExists(RouterName))
 				{
-					Toast.makeText(c, "Router Created", Toast.LENGTH_SHORT).show();
+					//TODO: Find out why this isn't working!
+					Log.v(LOG_TAG, "ROUTER ALREADY EXISTS");					
 				}
 				else
 				{
-					Toast.makeText(c, "Router Already Exist", Toast.LENGTH_SHORT).show();
+					if (test.createRouter(RouterName))
+					{
+						Log.v(LOG_TAG, "ROUTER CREATED");
+					}					
 				}
 				if (test.setPortInfo(RouterName, RouterIPAddress, RouterSubnetAddress, PortNumber))
 				{
-					Toast.makeText(c, "Port Information Set", Toast.LENGTH_LONG).show();
+					Log.v(LOG_TAG, "PORT INFORMATION SET");
 				}
 				else
 				{
-					Toast.makeText(c, "That IP Address Already Exists", Toast.LENGTH_LONG).show();
+					Log.v(LOG_TAG, "IP Address Already Exists");
 				}
 			}
 		});
