@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>   
+<string name="IPAddress">What is the IP address?</string>
+<string name="Subnet">What is the subnet?</string>
+<string name="Name">&quot;What is the routers name?&quot;</string>
+<string name="EditSubnet">Some hint text..</string>
+<string name="EditIPAddress">Some hint text...</string>
+<string name="EditRouter">Some hint text...</string>
+<string name="app_name">NetworkDesigner</string>
+</resources>
